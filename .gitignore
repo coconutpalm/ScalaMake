@@ -1,0 +1,9 @@
+.metadata
+.manager
+bin
+target
+.scala_dependencies
+artifacts.jar
+content.jar
+*site/features
+*site/plugins
