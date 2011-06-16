@@ -1,10 +1,11 @@
 ScalaMake
 =========
 
-Sometimes all you need is a cross-platform thing like "Make".
 Sometimes all you need is something to process filesystem constraints
-and script Scala, Java, or platform shell commands.  Sometimes all you
-need is ScalaMake.
+and script Scala, Java, or platform shell commands based on the
+dependencies in your filesystem.  Sometimes all you need is a
+cross-platform thing like "Make".  Sometimes all you need is
+ScalaMake.
 
 Internally, I use ScalaMake to script separate builds (that may run
 using Maven or SBT) into a cohesive whole.
