@@ -34,8 +34,9 @@
 							<tasks>
 								<zip destfile="scalamake-${scalamake.version}.zip"
 									filesonly="true">
-								  <fileset dir="skel"/>
 								  <fileset dir="target" includes="*.jar"/>
+								  <fileset dir="skel"/>
+								  <fileset dir="../com.coconut_palm_software.scalamake.test/src/scalamake" includes="*Spec.scala"/>
 								</zip>
 							</tasks>
 						</configuration>
