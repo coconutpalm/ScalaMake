@@ -27,12 +27,12 @@ compiling it:
     "Runs a rule and a dependency" in {
       var rulesProcessed : List[String] = Nil
       scalaMake {
-      	"ALL" dependsOn "dependantRule" buildWith { 
-	  rulesProcessed = rulesProcessed ::: List("ALL")
-	}
+        "ALL" dependsOn "dependantRule" buildWith { 
+          rulesProcessed = rulesProcessed ::: List("ALL")
+        }
       
         "dependantRule" buildWith { 
-	  rulesProcessed = rulesProcessed ::: List("dependantRule")
+          rulesProcessed = rulesProcessed ::: List("dependantRule")
         }
       }
       val expectedRuleOrder = "dependantRule" :: "ALL" :: Nil
