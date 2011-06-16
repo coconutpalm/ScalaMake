@@ -1,6 +1,6 @@
 package scalamake
 
-import ScalaMake._
+import Implicits._
 
 trait ScalaMakefile {
   def main(args: Array[String]) = {

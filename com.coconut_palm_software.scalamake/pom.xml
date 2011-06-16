@@ -15,10 +15,33 @@
 	<artifactId>com.coconut_palm_software.scalamake.core</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>eclipse-plugin</packaging>
-
+	
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
+			<!-- Zip up the resulting distro -->
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<id>build-release-zip</id>
+						<phase>package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<zip destfile="scalamake-${scalamake.version}.zip"
+									filesonly="true">
+								  <fileset dir="skel"/>
+								  <fileset dir="target" includes="*.jar"/>
+								</zip>
+							</tasks>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.sonatype.tycho</groupId>
 				<artifactId>target-platform-configuration</artifactId>

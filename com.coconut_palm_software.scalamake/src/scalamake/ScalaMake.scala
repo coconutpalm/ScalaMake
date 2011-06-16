@@ -4,6 +4,10 @@ import PlatformExec._
 import SPrintf._
 import scala.collection.mutable.HashMap
 
+object Implicits {
+  implicit def string2BuildRule(s : String) = new Rule(s)
+}
+
 object EvalStack {
   val FIRST_RULE = "ScalaMakeFirstRule"
   var ruleSet = new HashMap[String, Rule]
@@ -95,6 +99,7 @@ class Rule(_target : String) {
 }
 
 object scalaMake {
+  implicit def string2BuildRule(s : String) = new Rule(s)
   /**
    * Run the current ScaleMake context
    */
@@ -250,10 +255,6 @@ object scalaMake {
       }
     }
   }
-}
-
-object ScalaMake {
-  implicit def string2BuildRule(s : String) = new Rule(s)
 }
 
 private object FileUtil {

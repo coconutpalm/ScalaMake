@@ -1,7 +1,7 @@
 package scalamake
 
 import PlatformExec._
-import ScalaMake._
+import Implicits._
 import SPrintf._
 
 /*

@@ -1,8 +1,8 @@
 package scalamake
 
 import org.specs._
+import scalamake.Implicits._
 import PlatformExec._
-import ScalaMake._
 import SPrintf._
 import scala.collection.mutable.HashSet
 

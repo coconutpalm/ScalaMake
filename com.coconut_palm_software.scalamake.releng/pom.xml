@@ -5,12 +5,13 @@
 
 	<artifactId>com.coconut_palm_software.scalamake.lib</artifactId>
 	<groupId>com.coconut_palm_software</groupId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>${scalamake.version}</version>
 
 	<modelVersion>4.0.0</modelVersion>
 	<packaging>pom</packaging>
 
 	<properties>
+		<scalamake.version>0.0.1-SNAPSHOT</scalamake.version>
 		<scala.version>2.9.0-1</scala.version>
 		<tycho-version>0.11.0</tycho-version>
 		<maven-scala-plugin-version>2.14</maven-scala-plugin-version>
@@ -23,8 +24,25 @@
 
 	<modules>
 		<module>../com.coconut_palm_software.scalamake</module>
+		<!-- 
 		<module>../com.coconut_palm_software.scalamake.test</module>
+		 -->
 	</modules>
+
+	<dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-tools.testing</groupId>
+            <artifactId>specs</artifactId>
+            <version>1.5.0</version>
+            <scope>test</scope>
+        </dependency>
+	</dependencies>
 
 	<repositories>
 		<repository>
@@ -35,6 +53,13 @@
 		</repository>
 
 		<repository>
+			<!-- for some reason have to define this explicitly to get JUnit to download -->
+			<id>repo1.maven.org</id>
+			<name>Maven Central</name>
+			<url>http://repo1.maven.org</url>
+		</repository>
+
+		<repository>
 			<id>scala-tools.release</id>
 			<name>Scala Tools maven release repository</name>
 			<url>http://scala-tools.org/repo-releases</url>
@@ -42,6 +67,7 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
+		
 		<repository>
 			<id>scala-tools.snapshot</id>
 			<name>Scala Tools maven snapshot repository</name>

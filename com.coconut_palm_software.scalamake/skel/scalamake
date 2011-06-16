@@ -1,0 +1,3 @@
+#!/bin/bash
+SCALAMAKE_JAR=`ls $SCALAMAKE_HOME/*scalamake.core*.jar`
+scala -classpath $SCALAMAKE_JAR "$@"
