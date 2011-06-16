@@ -36,6 +36,7 @@
 									filesonly="true">
 								  <fileset dir="target" includes="*.jar"/>
 								  <fileset dir="skel"/>
+								  <fileset dir="." includes="epl-v10.html"/>
 								  <fileset dir="../com.coconut_palm_software.scalamake.test/src/scalamake" includes="*Spec.scala"/>
 								</zip>
 							</tasks>
