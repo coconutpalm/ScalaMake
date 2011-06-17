@@ -19,11 +19,15 @@ What ScalaMake code looks like
 The complete ScalaMake specification is defined using "Specs" and it's
 in the zipfile, but here's a taste:
 
-You can get into ScalaMake syntax using the scalaMake keyword in any
-Scala code, you can define a ScalaMakefile object and run it like any
-regular Scala application, or you can define a ScalaMake makefile as a
-Scala script and run it using the "scalamake" shell script without
-compiling it:
+You can get into ScalaMake syntax using 
+
+* The scalaMake keyword in any Scala code
+* Using a ScalaMakefile object that you can run like any
+regular Scala application, or 
+* A ScalaMake makefile as a Scala script and run it using the 
+"scalamake" shell script without compiling it.
+
+In these examples, we'll use the first option:
 
     "Runs a rule and a dependency" in {
       var rulesProcessed : List[String] = Nil
