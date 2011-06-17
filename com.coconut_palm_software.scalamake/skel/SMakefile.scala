@@ -2,6 +2,7 @@ import scalamake.ScalaMakefile
 import scalamake.Implicits._
 import scalamake.scalaMake
 //import scalamake.PlatformExec._
+//import scalamake.SPrintf._
 
 object SMakefile extends ScalaMakefile {
   println("Hello1")
