@@ -27,7 +27,8 @@ regular Scala application, or
 * Build a ScalaMake makefile as a Scala script and run it directly using the 
 "scalamake" shell script (without compiling it).
 
-These examples come from the formal specification, and use the first option:
+These examples come from the ScalaMake specification/tests, and use
+the first option:
 
     "Runs a rule and a dependency" in {
       var rulesProcessed : List[String] = Nil
