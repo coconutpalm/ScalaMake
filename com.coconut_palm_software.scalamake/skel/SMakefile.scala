@@ -8,10 +8,10 @@ object SMakefile extends ScalaMakefile {
   val SYSTEM="My System"
   val VERSION="0.0.1-SNAPSHOT"
 
-  println("==========================================================")
+  println("===================================================================")
   println((" %s_%s: build starting " << (SYSTEM, VERSION)) 
-          + new java.util.Date())
-  println("==========================================================")
+            + new java.util.Date())
+  println("===================================================================")
 
   "ALL" buildWith {
     println("Hello, world")
