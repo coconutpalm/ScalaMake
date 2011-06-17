@@ -42,6 +42,22 @@ compiling it:
 
 You can use Ant-style recursive directory dependencies:
 
+    "Build target if any (path/to/**/*.ext) is newer" in {
+      // These were done above, so we won't redo them
+      //!"touch target.txt"
+      //Thread.sleep(500)
+      //makeTestFiles("testSrc", "txt")  // test files will be newer
+    
+      var targetWasBuilt = false
+      scalaMake {
+        "target.txt" dependsOn "testSrc/**/*.txt" buildWith {
+          targetWasBuilt = true
+        }
+      }
+    
+      targetWasBuilt mustBe true
+    }
+    
     "Build (some/path/**) as a dependency" in {
       // This was done above, so we won't redo
       //makeTestFiles("testSrc", "txt")  // test files will be newer
