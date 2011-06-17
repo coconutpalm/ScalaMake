@@ -19,13 +19,13 @@ What ScalaMake code looks like
 The complete ScalaMake specification is defined using "Specs" and it's
 in the zipfile, but here's a taste:
 
-You can get into ScalaMake syntax using 
+You can use ScalaMake in any of the following ways:
 
-* The scalaMake keyword in any Scala code
-* Using a ScalaMakefile object that you can run like any
+* Use the scalaMake keyword in any Scala code
+* Create a ScalaMakefile object that you can run like any
 regular Scala application, or 
-* A ScalaMake makefile as a Scala script and run it using the 
-"scalamake" shell script without compiling it.
+* Build a ScalaMake makefile as a Scala script and run it directly using the 
+"scalamake" shell script (without compiling it).
 
 These examples come from the formal specification, and use the first option:
 
