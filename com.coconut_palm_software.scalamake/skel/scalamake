@@ -1,3 +1,9 @@
 #!/bin/bash
 SCALAMAKE_JAR=`ls $SCALAMAKE_HOME/*scalamake.core*.jar`
-scala -classpath $SCALAMAKE_JAR "$@"
+if [ -f SMakefile.scala ] && [ "./$1" != "./SMakefile.scala" ]
+then
+    scala -classpath $SCALAMAKE_JAR SMakefile.scala "$@"
+else
+    scala -classpath $SCALAMAKE_JAR "$@"
+fi
+

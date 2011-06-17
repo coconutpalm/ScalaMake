@@ -5,10 +5,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<artifactId>com.coconut_palm_software.scalamake.lib</artifactId>
-		<groupId>com.coconut_palm_software</groupId>
-		<version>0.0.1-SNAPSHOT</version>
-	    <relativePath>../com.coconut_palm_software.scalamake.releng</relativePath>
+	  <artifactId>com.coconut_palm_software.scalamake.lib</artifactId>
+	  <groupId>com.coconut_palm_software</groupId>
+	  <version>0.0.1-SNAPSHOT</version>
+	  <relativePath>../com.coconut_palm_software.scalamake.releng</relativePath>
 	</parent>
 
 	<groupId>com.coconut_palm_software</groupId>
