@@ -29,6 +29,8 @@ compiling it:
       var rulesProcessed : List[String] = Nil
       scalaMake {
         "ALL" dependsOn "dependantRule" buildWith { 
+          // In real code you would actually build something here, 
+          // but since this is a test, we'll just note that we were called.
           rulesProcessed = rulesProcessed ::: List("ALL")
         }
       
@@ -43,10 +45,8 @@ compiling it:
 You can use Ant-style recursive directory dependencies:
 
     "Build target if any (path/to/**/*.ext) is newer" in {
-      // These were done above, so we won't redo them
-      //!"touch target.txt"
-      //Thread.sleep(500)
-      //makeTestFiles("testSrc", "txt")  // test files will be newer
+      !"touch target.txt"
+      makeTestFiles("testSrc", "txt")  // test files will be newer
     
       var targetWasBuilt = false
       scalaMake {
