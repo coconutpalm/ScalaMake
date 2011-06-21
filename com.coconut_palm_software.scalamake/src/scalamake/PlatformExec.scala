@@ -116,23 +116,36 @@ object execute {
   }
 }
 
-object PlatformExec {
-  implicit def string2PlatformExec(s : String) = new PlatformExec(s)
-  implicit def string2File(s : String) = new java.io.File(s)
-
-  def chdir[A](dir: String)(a: => A): A = { 
+object chdir {
+  def apply[A](dir : String)(a: => A): A = {
     if (!new java.io.File(dir).isDirectory) {
       throw new IllegalArgumentException(dir + " is not a directory")
     }
     val original = System.getProperty("user.dir") 
-    if (printResults) println("Changing to : " + dir)
+    if (PlatformExec.printResults) println("Changing to : " + dir)
     System.setProperty("user.dir", dir) 
     try {
       a 
     } finally { 
-      if (printResults) println("Returning to: " + original)
+      if (PlatformExec.printResults) println("Returning to: " + original)
       System.setProperty("user.dir", original) 
     }
+  }
+}
+
+class ChDir(dir : String) {
+  def cd[A](a: => A) = {
+    chdir(dir)(a)
+  }
+}
+
+object PlatformExec {
+  implicit def string2PlatformExec(s : String) = new PlatformExec(s)
+  implicit def string2File(s : String) = new java.io.File(s)
+  implicit def string2ChDir(dir : String) = new ChDir(dir)
+
+  def chdir[A](dir: String)(a: => A): A = { 
+    new ChDir(dir).cd(a)
   } 
 
   var printResults = true
