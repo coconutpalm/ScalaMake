@@ -32,4 +32,27 @@ class PlatformExecTest extends SpecificationWithJUnit {
     val implicitFileList = ".".list
     fileList.corresponds(implicitFileList)( _ == _ ) mustBe true
   }
+  
+  "chdir changes the user.dir" in {
+    val originalDir = System.getProperty("user.dir")
+    chdir("/") {
+      System.getProperty("user.dir") mustBe "/"
+    }
+    System.getProperty("user.dir") mustBe originalDir
+  }
+  
+  "chdir to illegal dir throws IllegalArgumentException" in {
+    try {
+      chdir("/adirectorythatdoesnotexistinanyonescomputer") {
+        fail
+      }
+    } catch {
+      case e : IllegalArgumentException => true mustBe true // success
+    }
+  }
+  
+  "Run a command in the background" in {
+    "echo In the background...".background
+    true mustBe true
+  }
 }

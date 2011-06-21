@@ -30,6 +30,16 @@ class PlatformExec(command: String) {
     run(PlatformExec.printResults)
   }
   
+  def unary_& = {
+    runInBackground(PlatformExec.printResults)
+    print("")
+  }
+  
+  def background() = {
+    runInBackground(PlatformExec.printResults)
+    print("")
+  }
+  
   def execPrint() = {
     run(true)
   }
@@ -38,12 +48,17 @@ class PlatformExec(command: String) {
     run(false)
   }
   
-  def run(printResults : Boolean) = {
+  def runInBackground(printResults : Boolean) = {
     val runtime = Runtime.getRuntime
+    
+    val userDirPath = System.getProperty("user.dir")
+    val userDir = new java.io.File(userDirPath)
+    
     if (printResults) {
       println(getCommand)
     }
-    val process = runtime.exec(getCommand)
+    
+    val process = runtime.exec(getCommand, null, userDir)
     val stdoutStream = new StreamGobbler(process.getInputStream)
     stdoutStream.printResults = printResults
     val stderrStream = new StreamGobbler(process.getErrorStream)
@@ -51,8 +66,15 @@ class PlatformExec(command: String) {
      
     stdoutStream.start()
     stderrStream.start()
+
+    (process, process.getInputStream, stdoutStream, stderrStream)
+  }
+  
+  def run(printResults : Boolean) = {
+    val (process, inputStream, stdoutStream, stderrStream) = runInBackground(printResults)
      
     this.exitVal = process.waitFor()
+    // Deal with race conditions waiting for the streams to close...
     while (stdoutStream.isAlive) java.lang.Thread.sleep(1)
     this.stdout = stdoutStream.result
     while (stderrStream.isAlive) java.lang.Thread.sleep(1)
@@ -88,17 +110,30 @@ class PlatformExec(command: String) {
   }
 }
 
-
 object execute {
   def apply (command : String) {
     new PlatformExec(command).run(PlatformExec.printResults)
   }
 }
 
-
 object PlatformExec {
   implicit def string2PlatformExec(s : String) = new PlatformExec(s)
   implicit def string2File(s : String) = new java.io.File(s)
+
+  def chdir[A](dir: String)(a: => A): A = { 
+    if (!new java.io.File(dir).isDirectory) {
+      throw new IllegalArgumentException(dir + " is not a directory")
+    }
+    val original = System.getProperty("user.dir") 
+    if (printResults) println("Changing to : " + dir)
+    System.setProperty("user.dir", dir) 
+    try {
+      a 
+    } finally { 
+      if (printResults) println("Returning to: " + original)
+      System.setProperty("user.dir", original) 
+    }
+  } 
 
   var printResults = true
 }
