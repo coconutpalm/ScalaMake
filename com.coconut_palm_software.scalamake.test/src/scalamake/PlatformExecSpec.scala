@@ -63,4 +63,10 @@ class PlatformExecTest extends SpecificationWithJUnit {
     "echo In the background...".background
     true mustBe true
   }
+  
+  "Run a command in the background using ampersand" in {
+    "echo In the background...".&
+    true mustBe true
+  }
+
 }

@@ -30,7 +30,7 @@ class PlatformExec(command: String) {
     run(PlatformExec.printResults)
   }
   
-  def unary_& = {
+  def &() = {
     runInBackground(PlatformExec.printResults)
     print("")
   }
