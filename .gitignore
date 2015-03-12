@@ -9,3 +9,5 @@ content.jar
 *site/plugins
 *~
 .DS_Store
+.classpath
+.project
