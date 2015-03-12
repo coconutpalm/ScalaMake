@@ -11,3 +11,4 @@ content.jar
 .DS_Store
 .classpath
 .project
+.cache
