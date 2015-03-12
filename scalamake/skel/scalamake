@@ -1,5 +1,5 @@
 #!/bin/bash
-SCALAMAKE_JAR="$SCALAMAKE_HOME/com.coconut_palm_software.scalamake.core-1.0.0-SNAPSHOT.jar"
+SCALAMAKE_JAR="$SCALAMAKE_HOME/scalamake_2.11-1.0.jar"
 TIME_JAR="$SCALAMAKE_HOME/time-2.9.0-0.2-SNAPSHOT.jar"
 JODATIME_JAR="$SCALAMAKE_HOME/joda-time-2.0.jar"
 JODAPRIM_JAR="$SCALAMAKE_HOME/joda-primitives-1.0.jar"

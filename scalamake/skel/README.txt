@@ -34,3 +34,17 @@ The allowed syntax is specified using Specs.  For convenience, the tests are
 bundled and included in the distribution, but to run them you'll need to check
 out the full repository and run them from Eclipse using the JUnit 4 runner.
 
+---
+
+Building:
+
+Going forward, ScalaMake builds using SBT and/or Typesafe Activator.  Build
+using the "package" target in SBT, then run the "package.sh" script to create
+the release zip.  Note that depending on the version of Scala, etc., you might
+have to update the scalamake script to have the correct jar file name for
+scalamake.
+
+Note that tests assume a POSIX-compatible command-line environment.  Building
+on Windows outside of Cygwin is NOT supported at this time, and I haven't 
+tested building on Cygwin either.  Patches / pull requests are welcome.
+
