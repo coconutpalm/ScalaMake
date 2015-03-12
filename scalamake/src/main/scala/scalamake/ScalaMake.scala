@@ -129,7 +129,8 @@ object scalaMake {
     
   private def isDependencyUpToDate(target : String, dependency : String) = {
     if (!new java.io.File(target).exists || 
-          dependency.lastModified > target.lastModified) {
+          dependency.lastModified > target.lastModified) 
+    {
       false
     } else {
       true

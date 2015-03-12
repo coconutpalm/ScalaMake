@@ -5,9 +5,14 @@ import PlatformExec._
 import SPrintf._
 import scala.collection.mutable.HashSet
 import org.specs2.mutable._
+import concurrent._
 
-object ScalaMakeSpec extends ScalaMakeTest
 
+/*
+ * NOTE: There are a lot of Thread#sleep calls here.  This is because there is a race 
+ * condition between the test touching files and the disk on MacOS.  If anyone
+ * has a fix, I'm glad to incorporate it.
+ */
 class ScalaMakeTest extends Specification {
   sequential
   PlatformExec.printResults = false
@@ -104,6 +109,8 @@ class ScalaMakeTest extends Specification {
       var actionRan = false;
       !"touch dependant.txt"
       !"touch target.txt"
+      Thread.sleep(900L)
+
       scalaMake {
         "target.txt" dependsOn "dependant.txt" buildWith {
           actionRan = true;
@@ -114,7 +121,10 @@ class ScalaMakeTest extends Specification {
     
     "Actions that depend on files run if the target file is older than the dependant" in {
       !"touch target.txt"
+      Thread.sleep(900L)
       !"touch dependant_newer.txt"
+      Thread.sleep(900L)
+      
       var actionRan = false;
       scalaMake {
         "target.txt" dependsOn "dependant_newer.txt" buildWith {
@@ -126,6 +136,7 @@ class ScalaMakeTest extends Specification {
     
     "Actions that depend on files run if the target file is older than any dependant" in {
       !"touch dependant_newer.txt"
+      Thread.sleep(500L)
       var actionRan = false;
       scalaMake {
         "target.txt" dependsOn ("dependant.txt", "dependant_newer.txt") buildWith {
@@ -158,6 +169,11 @@ class ScalaMakeTest extends Specification {
     }
   
     "Define and use generic rules to build files does not build if target is newer than dependant" in {
+      !"touch dependant_newer.txt"
+      Thread.sleep(500L)
+      !"touch target.out"
+      Thread.sleep(500L)
+
       var fileProcessed = false
       scalaMake {
         "ALL" dependsOn "target.out"
@@ -188,8 +204,9 @@ class ScalaMakeTest extends Specification {
   
     "Build target if any (path/to/**/*.ext) is newer" in {
       !"touch target.txt"
-      Thread.sleep(500)
+      Thread.sleep(900)
       makeTestFiles("testSrc", "txt")  // test files will be newer
+      Thread.sleep(900)
       
       var targetWasBuilt = false
       scalaMake {
@@ -202,9 +219,11 @@ class ScalaMakeTest extends Specification {
     }
     
     "Build target if any file inside (path/to/**/) is newer" in {
+      Thread.sleep(900L)
       !"touch target.txt"
-      Thread.sleep(500)
+      Thread.sleep(900)
       makeTestFiles("testSrc", "txt")  // test files will be newer
+      Thread.sleep(900)
       
       var targetWasBuilt = false
       scalaMake {
@@ -218,7 +237,9 @@ class ScalaMakeTest extends Specification {
     
     "Do not build target if all (path/to/**/*.ext) are older" in {
       makeTestFiles("testSrc", "txt")
+      Thread.sleep(900)
       !"touch newer_target.txt"  // target.txt will be newer
+      Thread.sleep(900)
       
       var targetWasBuilt = false
       scalaMake {
