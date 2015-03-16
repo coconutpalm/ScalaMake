@@ -1,4 +1,0 @@
-#Sun Aug 10 22:02:25 CDT 2008
-eclipse.preferences.version=1
-org.eclipse.jdt.core.builder.cleanOutputFolder=ignore
-org.eclipse.jdt.core.builder.resourceCopyExclusionFilter=*.scala
