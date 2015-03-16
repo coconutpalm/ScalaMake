@@ -17,5 +17,5 @@ object SMakefile extends ScalaMakefile {
   }
 }
 
-SMakefile.main(argv)
+SMakefile.main(args)
 

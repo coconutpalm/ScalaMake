@@ -7,8 +7,9 @@ JODACONVERT_JAR="$SCALAMAKE_HOME/joda-convert-1.2.jar"
 
 if [ -f SMakefile.scala ] && [ "./$1" != "./SMakefile.scala" ]
 then
-    scala -classpath "$TIME_JAR:$JODATIME_JAR:$JODAPRIM_JAR:$JODACONVERT_JAR:$SCALAMAKE_JAR" SMakefile.scala "$@"
+    echo scala -classpath "$TIME_JAR:$JODATIME_JAR:$JODAPRIM_JAR:$JODACONVERT_JAR:$SCALAMAKE_JAR" -Xlint -nc SMakefile.scala $@
+    scala -classpath "$TIME_JAR:$JODATIME_JAR:$JODAPRIM_JAR:$JODACONVERT_JAR:$SCALAMAKE_JAR" -Xlint -nc SMakefile.scala $@
 else
-    scala -classpath "$TIME_JAR:$JODATIME_JAR:$JODAPRIM_JAR:$JODACONVERT_JAR:$SCALAMAKE_JAR" "$@"
+    echo scala -classpath "$TIME_JAR:$JODATIME_JAR:$JODAPRIM_JAR:$JODACONVERT_JAR:$SCALAMAKE_JAR" -Xlint -nc $@
+    scala -classpath "$TIME_JAR:$JODATIME_JAR:$JODAPRIM_JAR:$JODACONVERT_JAR:$SCALAMAKE_JAR" -Xlint -nc $@
 fi
-

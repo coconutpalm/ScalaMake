@@ -1,9 +1,9 @@
 #!/bin/bash
-rm -y scalamake-*.zip
-mkdir temp
-cd temp
+rm -f scalamake-*.zip
+mkdir scalamake
+cd scalamake
 cp ../target/scala*/*.jar .
 cp ../skel/* .
-zip ../scalamake *
 cd ..
-#rm -fr temp
+zip -r scalamake_0.1.0.zip scalamake
+rm -fr scalamake
