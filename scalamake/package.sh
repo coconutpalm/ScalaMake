@@ -5,5 +5,5 @@ cd scalamake
 cp ../target/scala*/*.jar .
 cp ../skel/* .
 cd ..
-zip -r scalamake_0.1.0.zip scalamake
+zip -r ../scalamake_0.1.0.zip scalamake
 rm -fr scalamake

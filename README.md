@@ -84,7 +84,7 @@ You can use Ant-style recursive directory dependencies:
     }
 
 That's enough for now.  If you like this, just download the .zip and
-get started.  Or pull the whole repo, build it using Maven 3, and
+get started.  Or pull the whole repo, build it using SBT, and
 contribute!
 
 --Dave Orme
